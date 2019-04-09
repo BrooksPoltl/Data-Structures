@@ -48,4 +48,16 @@ class BinarySearchTree:
 
 
   def for_each(self, cb):
-    pass
+    queue = [self]
+    visited = []
+    while len(queue) != 0:
+      node = queue.pop(0)
+      visited.append(node)
+      if node.left != None: 
+        queue.append(node.left)
+      if node.right != None:
+        queue.append(node.right)
+    for item in visited:
+      item.value = cb(item.value)
+    return visited
+      
